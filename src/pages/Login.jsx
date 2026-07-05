@@ -45,11 +45,14 @@ function Login() {
           />
 
           <div className="relative">
-         <input
+          <input
           type={showPassword ? "text" : "password"}
           placeholder="Password"
-          className="w-full p-4 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
-          />
+         value={password}
+         onChange={(e) => setPassword(e.target.value)}
+         className="w-full p-4 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+         required
+         />
 
          <button
          type="button"
