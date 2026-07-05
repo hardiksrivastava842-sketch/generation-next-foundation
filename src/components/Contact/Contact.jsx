@@ -1,4 +1,45 @@
+import { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase/firebase";
+
 function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await addDoc(collection(db, "messages"), {
+        ...formData,
+        createdAt: new Date().toLocaleString(),
+      });
+
+      alert("✅ Message Sent Successfully!");
+
+      setFormData({
+        name: "",
+        email: "",
+        mobile: "",
+        message: "",
+      });
+    } catch (error) {
+      console.log(error);
+      alert("❌ Failed to send message.");
+    }
+  };
+
   return (
     <section className="py-20 bg-gradient-to-r from-black via-red-900 to-red-700 text-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -46,29 +87,45 @@ function Contact() {
           </div>
 
           {/* Contact Form */}
-          <form className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
 
             <input
               type="text"
+              name="name"
               placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
               className="w-full p-4 rounded-lg bg-white text-black outline-none border border-red-300 focus:ring-2 focus:ring-red-500"
             />
 
             <input
               type="email"
+              name="email"
               placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
               className="w-full p-4 rounded-lg bg-white text-black outline-none border border-red-300 focus:ring-2 focus:ring-red-500"
             />
 
             <input
               type="text"
+              name="mobile"
               placeholder="Mobile Number"
+              value={formData.mobile}
+              onChange={handleChange}
+              required
               className="w-full p-4 rounded-lg bg-white text-black outline-none border border-red-300 focus:ring-2 focus:ring-red-500"
             />
 
             <textarea
               rows="5"
+              name="message"
               placeholder="Your Message"
+              value={formData.message}
+              onChange={handleChange}
+              required
               className="w-full p-4 rounded-lg bg-white text-black outline-none border border-red-300 focus:ring-2 focus:ring-red-500"
             ></textarea>
 
