@@ -1,16 +1,32 @@
-import Navbar from "./components/Navbar/Navbar";
+import { Routes, Route } from "react-router-dom";
+
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import AddStudent from "./pages/AddStudent";
+import Students from "./pages/Students";
+import StudentDetails from "./pages/StudentDetails";
+import SearchStudent from "./pages/SearchStudent";
 
 function App() {
   return (
-    <>
-      <Navbar />
+    <Routes>
 
-      <div className="min-h-screen bg-blue-600 flex items-center justify-center">
-        <h1 className="text-5xl font-bold text-white">
-          🎉 Tailwind CSS is Working!
-        </h1>
-      </div>
-    </>
+      <Route path="/" element={<Home />} />
+
+      <Route path="/login" element={<Login />} />
+
+      <Route path="/dashboard" element={<Dashboard />} />
+
+      <Route path="/add-student" element={<AddStudent />} />
+
+      <Route path="/students" element={<Students />} />
+
+      <Route path="/student/:id" element={<StudentDetails />} />
+
+      <Route path="/search-student" element={<SearchStudent />} />
+
+    </Routes>
   );
 }
 
