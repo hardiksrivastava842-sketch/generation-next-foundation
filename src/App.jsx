@@ -33,6 +33,8 @@ function App() {
       {/* Search Student */}
       <Route path="/search-student" element={<SearchStudent />} />
 
+      
+
     </Routes>
   );
 }
