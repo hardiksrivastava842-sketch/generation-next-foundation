@@ -143,7 +143,11 @@ function AddStudent() {
             <option>CCC</option>
             <option>O Level</option>
           </select>
-          
+           <div>
+          <label className="block mb-2 font-semibold text-gray-700">
+            Date of Birth
+           </label>
+
            <input
            type="date"
            name="dob"
@@ -151,6 +155,11 @@ function AddStudent() {
            onChange={handleChange}
            className="border p-3 rounded-lg"
            />
+           </div>
+           <div>
+             <label className="block mb-2 font-semibold text-gray-700">
+             Joining Date
+              </label>
 
           <input
             type="date"
@@ -159,7 +168,7 @@ function AddStudent() {
             onChange={handleChange}
             className="border p-3 rounded-lg"
           />
-
+           </div>
           <textarea
             name="address"
             placeholder="Address"
