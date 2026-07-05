@@ -1,8 +1,18 @@
-import { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../firebase/firebase";
-
 function AddStudent() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
   const [student, setStudent] = useState({
     name: "",
     fatherName: "",
@@ -12,6 +22,31 @@ function AddStudent() {
     joiningDate: "",
     address: "",
   });
+
+  useEffect(() => {
+  const fetchStudent = async () => {
+    if (!id) return;
+
+    setLoading(true);
+
+    try {
+      const docRef = doc(db, "students", id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        setStudent(docSnap.data());
+      } else {
+        alert("Student Not Found");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    setLoading(false);
+  };
+
+  fetchStudent();
+}, [id]);
 
   // Input Change
   const handleChange = (e) => {
@@ -23,27 +58,28 @@ function AddStudent() {
 
   // Form Submit
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
+  try {
+    if (id) {
+      // Update Student
+      await updateDoc(doc(db, "students", id), student);
+
+      alert("✅ Student Updated Successfully!");
+    } else {
+      // Add Student
       await addDoc(collection(db, "students"), student);
 
       alert("✅ Student Added Successfully!");
-
-      setStudent({
-        name: "",
-        fatherName: "",
-        mobile: "",
-        email: "",
-        course: "",
-        joiningDate: "",
-        address: "",
-      });
-    } catch (error) {
-      console.log(error);
-      alert("❌ Error adding student");
     }
-  };
+
+    navigate("/students");
+
+  } catch (error) {
+    console.log(error);
+    alert("❌ Something went wrong!");
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">

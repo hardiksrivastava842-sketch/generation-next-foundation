@@ -18,12 +18,19 @@ function App() {
 
       <Route path="/dashboard" element={<Dashboard />} />
 
+      {/* Add Student */}
       <Route path="/add-student" element={<AddStudent />} />
 
+      {/* Edit Student */}
+      <Route path="/edit-student/:id" element={<AddStudent />} />
+
+      {/* Student List */}
       <Route path="/students" element={<Students />} />
 
+      {/* Student Details */}
       <Route path="/student/:id" element={<StudentDetails />} />
 
+      {/* Search Student */}
       <Route path="/search-student" element={<SearchStudent />} />
 
     </Routes>
