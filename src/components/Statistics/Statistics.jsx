@@ -1,6 +1,6 @@
 function Statistics() {
   return (
-    <section className="bg-blue-700 text-white py-20">
+    <section className="bg-gradient-to-r from-red-950 via-red-900 to-red-800 text-white py-20">
       <div className="max-w-7xl mx-auto px-6">
 
         <h2 className="text-4xl font-bold text-center">
