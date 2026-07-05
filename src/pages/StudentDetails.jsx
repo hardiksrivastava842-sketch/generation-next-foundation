@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 
+
 function StudentDetails() {
   const { id } = useParams();
 
@@ -70,6 +71,11 @@ function StudentDetails() {
             <h2 className="font-bold text-gray-700">Course</h2>
             <p>{student.course}</p>
           </div>
+
+           <div>
+           <h2 className="font-bold text-gray-700">Date of Birth</h2>
+           <p>{student.dob}</p>
+           </div>
 
           <div>
             <h2 className="font-bold text-gray-700">Joining Date</h2>

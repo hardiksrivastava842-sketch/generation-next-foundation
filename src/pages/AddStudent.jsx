@@ -19,6 +19,7 @@ function AddStudent() {
     mobile: "",
     email: "",
     course: "",
+    dob: "",
     joiningDate: "",
     address: "",
   });
@@ -93,7 +94,7 @@ function AddStudent() {
           onSubmit={handleSubmit}
           className="grid grid-cols-1 md:grid-cols-2 gap-5"
         >
-
+          
           <input
             type="text"
             name="name"
@@ -142,6 +143,14 @@ function AddStudent() {
             <option>CCC</option>
             <option>O Level</option>
           </select>
+          
+           <input
+           type="date"
+           name="dob"
+           value={student.dob}
+           onChange={handleChange}
+           className="border p-3 rounded-lg"
+           />
 
           <input
             type="date"
