@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -5,10 +6,9 @@ import { auth } from "../firebase/firebase";
 
 function Login() {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [showPassword, setShowPassword] = useState(false);
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -44,14 +44,21 @@ function Login() {
             required
           />
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-4 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
-            required
+          <div className="relative">
+         <input
+          type={showPassword ? "text" : "password"}
+          placeholder="Password"
+          className="w-full p-4 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
           />
+
+         <button
+         type="button"
+         onClick={() => setShowPassword(!showPassword)}
+         className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600"
+         >
+          {showPassword ? "🙈" : "👁️"}
+          </button>
+         </div>
 
           <button
             type="submit"
