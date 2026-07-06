@@ -39,55 +39,39 @@ function Dashboard() {
         </p>
       </div>
 
-      {/* Main Content */}
+      {/* Main */}
       <div className="max-w-7xl mx-auto p-8">
 
         <h2 className="text-4xl font-bold mb-8">
           Dashboard Overview
         </h2>
 
-        {/* Dashboard Cards */}
+        {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-          {/* Total Students */}
           <div className="bg-white rounded-xl shadow-md p-6">
-            <h3 className="text-gray-500 text-lg">
-              👨‍🎓 Total Students
-            </h3>
-
+            <h3 className="text-gray-500 text-lg">👨‍🎓 Total Students</h3>
             <p className="text-5xl font-bold text-blue-700 mt-4">
               {totalStudents}
             </p>
           </div>
 
-          {/* Total Courses */}
           <div className="bg-white rounded-xl shadow-md p-6">
-            <h3 className="text-gray-500 text-lg">
-              📚 Total Courses
-            </h3>
-
+            <h3 className="text-gray-500 text-lg">📚 Total Courses</h3>
             <p className="text-5xl font-bold text-green-600 mt-4">
               4
             </p>
           </div>
 
-          {/* Contact */}
           <div className="bg-white rounded-xl shadow-md p-6">
-            <h3 className="text-gray-500 text-lg">
-              📞 Contact
-            </h3>
-
+            <h3 className="text-gray-500 text-lg">📞 Contact</h3>
             <p className="text-2xl font-bold mt-4">
               9453650995
             </p>
           </div>
 
-          {/* Email */}
           <div className="bg-white rounded-xl shadow-md p-6">
-            <h3 className="text-gray-500 text-lg">
-              📧 Email
-            </h3>
-
+            <h3 className="text-gray-500 text-lg">📧 Email</h3>
             <p className="text-lg font-semibold mt-4 break-all">
               gnextgonda@gmail.com
             </p>
@@ -120,16 +104,18 @@ function Dashboard() {
             <button className="bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-lg font-semibold transition">
               ⌨️ Typing Course
             </button>
-           </Link>
-          <button>
-           <Link to="/typing-results">
-           <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition">
-           📊 Typing Results
-           </button>
-           </Link>
+          </Link>
+
+          <Link to="/typing-results">
+            <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition">
+              📊 Typing Results
+            </button>
+          </Link>
+
+          <button
             onClick={handleLogout}
             className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition"
-          
+          >
             🚪 Logout
           </button>
 
