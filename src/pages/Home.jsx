@@ -11,7 +11,7 @@ function Home() {
   return (
     <>
     <h1 className="text-7xl text-red-600 text-center">
-     HARDIK TEST
+  
      </h1>
       <Navbar />
       <Hero />

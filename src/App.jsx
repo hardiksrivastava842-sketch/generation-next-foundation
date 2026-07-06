@@ -7,6 +7,7 @@ import AddStudent from "./pages/AddStudent";
 import Students from "./pages/Students";
 import StudentDetails from "./pages/StudentDetails";
 import SearchStudent from "./pages/SearchStudent";
+import TypingCourse from "./pages/TypingCourse";
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
 
       {/* Search Student */}
       <Route path="/search-student" element={<SearchStudent />} />
+     
+      <Route path="/typing-course" element={<TypingCourse />} />
 
       
 

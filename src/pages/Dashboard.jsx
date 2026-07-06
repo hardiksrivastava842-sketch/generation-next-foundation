@@ -116,7 +116,13 @@ function Dashboard() {
             </button>
           </Link>
 
+          <Link to="/typing-course">
+            <button className="bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-lg font-semibold transition">
+              ⌨️ Typing Course
+            </button>
+           </Link>
           <button
+          
             onClick={handleLogout}
             className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition"
           >

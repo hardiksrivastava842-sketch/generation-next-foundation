@@ -4,9 +4,18 @@ function Footer() {
 
       <div className="max-w-7xl mx-auto px-6">
 
-        <h1 className="text-center text-6xl font-bold text-red-500">
-          TEST FOOTER 12345
+        <h1 className="text-center text-4xl font-bold text-red-500">
+          Generation Next Foundation
         </h1>
+
+        <div className="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400 text-sm">
+          © {new Date().getFullYear()} Generation Next Foundation
+          <br />
+          Designed & Developed by{" "}
+          <span className="font-semibold text-red-500">
+            Hardik and team 
+          </span>
+        </div>
 
       </div>
 
