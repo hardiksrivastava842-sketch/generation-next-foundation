@@ -58,7 +58,7 @@ function Footer() {
         </p>
 
         <p className="text-sm text-red-500 font-medium">
-          Designed &amp; Developed by Hardik Srivastava ❤️
+          Designed &amp; Developed by Hardik 
         </p>
       </div>
 
