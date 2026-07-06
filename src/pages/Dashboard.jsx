@@ -121,11 +121,15 @@ function Dashboard() {
               ⌨️ Typing Course
             </button>
            </Link>
-          <button
-          
+          <button>
+           <Link to="/typing-results">
+           <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition">
+           📊 Typing Results
+           </button>
+           </Link>
             onClick={handleLogout}
             className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition"
-          >
+          
             🚪 Logout
           </button>
 
