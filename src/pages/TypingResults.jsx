@@ -1,4 +1,29 @@
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase/firebase";
+
 function TypingResults() {
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "typingResults"));
+
+        const data = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        setResults(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchResults();
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-xl p-8">
@@ -7,7 +32,7 @@ function TypingResults() {
           📊 Typing Results
         </h1>
 
-        <table className="w-full border">
+        <table className="w-full border border-gray-300">
 
           <thead className="bg-red-700 text-white">
             <tr>
@@ -21,11 +46,45 @@ function TypingResults() {
           </thead>
 
           <tbody>
-            <tr>
-              <td className="p-3 text-center" colSpan="6">
-                No Results Available
-              </td>
-            </tr>
+
+            {results.length > 0 ? (
+              results.map((item) => (
+                <tr key={item.id} className="border">
+
+                  <td className="p-3 text-center">
+                    {item.studentName}
+                  </td>
+
+                  <td className="p-3 text-center">
+                    {item.duration} Min
+                  </td>
+
+                  <td className="p-3 text-center">
+                    {item.wpm}
+                  </td>
+
+                  <td className="p-3 text-center">
+                    {item.accuracy}%
+                  </td>
+
+                  <td className="p-3 text-center">
+                    {item.correctWords}
+                  </td>
+
+                  <td className="p-3 text-center">
+                    {item.wrongWords}
+                  </td>
+
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td className="p-3 text-center" colSpan="6">
+                  No Results Available
+                </td>
+              </tr>
+            )}
+
           </tbody>
 
         </table>

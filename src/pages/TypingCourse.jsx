@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { db } from "../firebase/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 function TypingCourse() {
   // Student Details
@@ -44,10 +46,38 @@ function TypingCourse() {
     setTestStarted(true);
   };
 
-  // Calculate Result
+  // Save result to Firebase (kept at component scope, called once per finished test)
+  const saveResultToFirebase = async (
+    duration,
+    totalWords,
+    correct,
+    wrong,
+    wordsPerMinute,
+    acc
+  ) => {
+    try {
+      await addDoc(collection(db, "typingResults"), {
+        studentName,
+        duration,
+        totalWords,
+        correctWords: correct,
+        wrongWords: wrong,
+        wpm: wordsPerMinute,
+        accuracy: acc,
+        language: "English",
+        completedAt: serverTimestamp(),
+      });
+
+      console.log("Result Saved Successfully");
+    } catch (error) {
+      console.error("Error Saving Result:", error);
+    }
+  };
+
+  // Calculate Result - now RETURNS the computed values instead of only setting state
   const calculateResult = () => {
     const originalWords = paragraph.trim().split(/\s+/);
-    const typedWords = typingText.trim().split(/\s+/);
+    const typedWords = typingText.trim().split(/\s+/).filter(Boolean);
 
     let correct = 0;
 
@@ -70,15 +100,27 @@ function TypingCourse() {
     setWrongWords(wrong);
     setAccuracy(acc);
     setWpm(wordsPerMinute);
-  }; 
-    // Timer
+
+    return { typedWords, correct, wrong, acc, wordsPerMinute };
+  };
+
+  // Called by the "Calculate Result" button while the test is still running
+  const handleManualCalculate = () => {
+    const { typedWords, correct, wrong, acc, wordsPerMinute } = calculateResult();
+    setTestStarted(false);
+    setTestCompleted(true);
+    saveResultToFirebase(time, typedWords.length, correct, wrong, wordsPerMinute, acc);
+  };
+
+  // Timer
   useEffect(() => {
     if (!testStarted) return;
 
     if (timeLeft <= 0) {
-      calculateResult();
+      const { typedWords, correct, wrong, acc, wordsPerMinute } = calculateResult();
       setTestStarted(false);
       setTestCompleted(true);
+      saveResultToFirebase(time, typedWords.length, correct, wrong, wordsPerMinute, acc);
       return;
     }
 
@@ -87,6 +129,7 @@ function TypingCourse() {
     }, 1000);
 
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [testStarted, timeLeft]);
 
   // Reset Test
@@ -116,7 +159,7 @@ function TypingCourse() {
         <h1 className="text-4xl font-bold text-center text-red-700 mb-8">
           ⌨️ English Typing Course
         </h1>
-                {!testStarted && !testCompleted ? (
+        {!testStarted && !testCompleted ? (
 
           <>
             {/* Student Name */}
@@ -217,9 +260,9 @@ function TypingCourse() {
               rows="8"
               className="w-full border-2 border-red-600 rounded-lg p-4 text-lg"
             />
-                        <div className="mt-6 text-center">
+            <div className="mt-6 text-center">
               <button
-                onClick={calculateResult}
+                onClick={handleManualCalculate}
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-bold"
               >
                 📊 Calculate Result
