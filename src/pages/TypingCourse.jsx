@@ -24,9 +24,17 @@ function TypingCourse() {
   const [wrongWords, setWrongWords] = useState(0);
 
   // Paragraph
-  const paragraph =
-    "The quick brown fox jumps over the lazy dog. Technology is changing the world every day. Practice typing daily to improve your typing speed and accuracy.";
+  // Paragraphs
+const paragraphs = {
+  1: `The quick brown fox jumps over the lazy dog. Technology is changing the world every day. Practice typing daily to improve your typing speed and accuracy.`,
 
+  3: `Technology has become an essential part of modern life. Every day people use computers, mobile phones, and the internet for education, communication, and entertainment. Learning typing is an important skill because it increases productivity and saves time. A good typist can complete office work, school assignments, and professional projects much faster than someone who types slowly. Regular practice improves speed, accuracy, and confidence. Students should focus on typing without looking at the keyboard while maintaining proper finger placement. Consistency is the key to success. Even fifteen minutes of daily practice can produce significant improvement over time. A positive attitude, patience, and continuous effort help every learner become an excellent typist.`,
+
+  5: `Technology has transformed the way people learn, communicate, and work. Computers, smartphones, and the internet have become essential tools in everyday life. Typing is one of the most valuable digital skills because it allows people to complete tasks quickly and accurately. Students who practice typing regularly develop better speed, improved concentration, and greater confidence while working on assignments. Professional typists rely on proper finger placement, correct posture, and consistent practice to achieve excellent results. Accuracy is more important than speed because mistakes reduce productivity and require additional time for correction. Daily typing exercises strengthen muscle memory and improve coordination between the hands and eyes. Reading carefully before typing also reduces spelling errors and improves overall performance. Successful learners remain patient during practice sessions and gradually increase their typing speed without sacrificing accuracy. Modern workplaces expect employees to type efficiently while preparing reports, emails, presentations, and documents. Continuous learning, discipline, and dedication help individuals master typing skills and become more productive in both academic and professional environments. Every minute spent practicing today contributes to greater efficiency, confidence, and career opportunities in the future.`,
+};
+
+const paragraph = paragraphs[time];
+    
   // Start Test
   const startTest = () => {
     if (studentName.trim() === "") {
