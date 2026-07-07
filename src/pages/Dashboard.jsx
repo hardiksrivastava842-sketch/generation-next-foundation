@@ -142,7 +142,7 @@ function Dashboard() {
   </div>
 </Link>
 
-           <Link to="/typing-course">
+           <Link to="/typing-language">
   <div className="w-64 h-64 bg-purple-700 hover:bg-purple-800 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
 
     <div className="text-7xl mb-4">

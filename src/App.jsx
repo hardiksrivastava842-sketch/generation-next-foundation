@@ -9,6 +9,8 @@ import StudentDetails from "./pages/StudentDetails";
 import SearchStudent from "./pages/SearchStudent";
 import TypingCourse from "./pages/TypingCourse";
 import TypingResults from "./pages/TypingResults";
+import HindiTypingCourse from "./pages/HindiTypingCourse"; 
+import TypingLanguage from "./pages/TypingLanguage";
 
 function App() {
   return (
@@ -40,8 +42,12 @@ function App() {
 
      {/* Typing Results */}
       <Route path="/typing-results" element={<TypingResults />} />  
-
       
+     {/* Hindi Typing Course */}
+      <Route path="/hindi-typing-course" element={<HindiTypingCourse />} />
+    
+      {/* Typing Language */}
+      <Route path="/typing-language" element={<TypingLanguage />} />
 
     </Routes>
   );
