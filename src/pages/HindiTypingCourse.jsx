@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { krutiMap } from "../utils/krutiMap";
-
+import { krutiKeys } from "../utils/krutiMap";
+import { db } from "../firebase/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 function HindiTypingCourse() {
   const [studentName, setStudentName] = useState("");
   const [time, setTime] = useState(1);
@@ -33,6 +34,33 @@ function HindiTypingCourse() {
     setTestStarted(true);
     setTestCompleted(false);
   };
+  const saveResultToFirebase = async (
+  studentName,
+  duration,
+  totalWords,
+  correct,
+  wrong,
+  wpm,
+  accuracy
+) => {
+  try {
+    await addDoc(collection(db, "typingResults"), {
+      studentName,
+      duration,
+      totalWords,
+      correctWords: correct,
+      wrongWords: wrong,
+      wpm,
+      accuracy,
+      language: "Hindi",
+      completedAt: serverTimestamp(),
+    });
+
+    console.log("Hindi Result Saved Successfully");
+  } catch (error) {
+    console.error("Error Saving Hindi Result:", error);
+  }
+};
 
   const handleTyping = (e) => {
   e.preventDefault();
@@ -67,30 +95,54 @@ function HindiTypingCourse() {
     return;
   }
 
-  // Kruti Mapping
- if (krutiMap[key]) {
-  const mapped = krutiMap[key];
+  // Kruti Dev Mapping
+const mapped = krutiKeys.normal[key];
 
-  setTypedText((prev) => {
-    // छोटी इ की मात्रा
-    if (mapped === "ि" && prev.length > 0) {
-      return prev + "ि";
-    }
-
-    return prev + mapped;
-  });
+if (mapped) {
+  setTypedText((prev) => prev + mapped);
 } else {
   setTypedText((prev) => prev + key);
 }
-};
+  };
+
 
   useEffect(() => {
     if (!testStarted) return;
-    if (timeLeft <= 0) {
-      setTestStarted(false);
-      setTestCompleted(true);
-      return;
-    }
+   if (timeLeft <= 0) {
+
+  const totalWords = typedText.trim() === ""
+    ? 0
+    : typedText.trim().split(/\s+/).length;
+
+  const correct = totalWords;
+  const wrong = 0;
+
+  const calculatedWpm = Math.round(totalWords / time);
+
+  const calculatedAccuracy =
+    totalWords === 0
+      ? 0
+      : Math.round((correct / totalWords) * 100);
+
+  setCorrectWords(correct);
+  setWrongWords(wrong);
+  setWpm(calculatedWpm);
+  setAccuracy(calculatedAccuracy);
+
+  saveResultToFirebase(
+    studentName,
+    time,
+    totalWords,
+    correct,
+    wrong,
+    calculatedWpm,
+    calculatedAccuracy
+  );
+
+  setTestStarted(false);
+  setTestCompleted(true);
+  return;
+}
     const t = setTimeout(() => setTimeLeft((v) => v - 1), 1000);
     return () => clearTimeout(t);
   }, [timeLeft, testStarted]);
@@ -138,16 +190,16 @@ function HindiTypingCourse() {
               </div>
             </div>
 
-            <div className="bg-gray-100 p-5 rounded-lg mb-5 text-xl leading-10">
+           <div className="bg-gray-100 border rounded-lg p-6 mb-6 text-xl leading-10 kruti-font">
               {paragraph}
             </div>
 
             <textarea
               value={typedText}
               onKeyDown={handleTyping}
-              readOnly
+          
               rows={8}
-              className="w-full border-2 border-red-600 rounded-lg p-4 text-2xl"
+              className="w-full border-2 border-red-600 rounded-lg p-4 text-2xl kruti-font"
             />
           </>
         ) : (

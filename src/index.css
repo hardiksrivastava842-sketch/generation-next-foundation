@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "KrutiDev";
+  src: url("./assets/fonts/Kruti Dev 010 Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.kruti-font {
+  font-family: "KrutiDev", sans-serif;
+}
