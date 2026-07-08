@@ -96,7 +96,9 @@ function HindiTypingCourse() {
   }
 
   // Kruti Dev Mapping
-const mapped = krutiKeys.normal[key];
+const mapped = e.shiftKey
+  ? krutiKeys.shift[key]
+  : krutiKeys.normal[key];
 
 if (mapped) {
   setTypedText((prev) => prev + mapped);
