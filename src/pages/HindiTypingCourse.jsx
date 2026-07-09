@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { krutiKeys } from "../utils/krutiMap";
 import { db } from "../firebase/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-
+import { processKrutiInput } from "../utils/typingEngine";
 function HindiTypingCourse() {
 
   const [studentName, setStudentName] = useState("");
@@ -118,8 +118,10 @@ const handleTyping = (e) => {
 
   // Add Character
   if (mapped) {
-    setTypedText((prev) => prev + mapped);
-  }
+  setTypedText((prev) => processKrutiInput(prev, mapped));
+} else {
+  setTypedText((prev) => processKrutiInput(prev, key));
+}
 };
 // Timer + Result Calculation
 useEffect(() => {

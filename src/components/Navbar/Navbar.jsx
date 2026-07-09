@@ -13,17 +13,67 @@ function Navbar() {
         </Link>
 
         {/* Menu */}
-        <ul className="flex gap-8 font-medium text-gray-700">
-          <li className="hover:text-blue-700 cursor-pointer">Home</li>
-          <li className="hover:text-blue-700 cursor-pointer">About</li>
-          <li className="hover:text-blue-700 cursor-pointer">Courses</li>
-          <li className="hover:text-blue-700 cursor-pointer">Students</li>
-          <li className="hover:text-blue-700 cursor-pointer">Contact</li>
+        <ul className="flex items-center gap-8 font-medium text-gray-700">
+
+          <li>
+            <Link
+              to="/"
+              className="hover:text-purple-700 transition"
+            >
+              Home
+            </Link>
+          </li>
+
+          <li>
+            <a
+              href="/#about"
+              className="hover:text-purple-700 transition"
+            >
+              About
+            </a>
+          </li>
+
+          <li>
+            <Link
+              to="/donation"
+              className="hover:text-purple-700 transition"
+            >
+              Donation
+            </Link>
+          </li>
+
+          <li>
+            <a
+              href="/#courses"
+              className="hover:text-purple-700 transition"
+            >
+              Courses
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/#students"
+              className="hover:text-purple-700 transition"
+            >
+              Students
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/#contact"
+              className="hover:text-purple-700 transition"
+            >
+              Contact
+            </a>
+          </li>
+
         </ul>
 
-        {/* Admin Login Button */}
+        {/* Admin Login */}
         <Link to="/login">
-          <button className="bg-blue-700 text-white px-5 py-2 rounded-lg hover:bg-blue-800 transition">
+          <button className="bg-purple-700 text-white px-5 py-2 rounded-lg hover:bg-purple-800 transition duration-300">
             Admin Login
           </button>
         </Link>

@@ -11,7 +11,7 @@ import TypingCourse from "./pages/TypingCourse";
 import TypingResults from "./pages/TypingResults";
 import HindiTypingCourse from "./pages/HindiTypingCourse"; 
 import TypingLanguage from "./pages/TypingLanguage";
-
+import Donation from "./components/Donation"; 
 function App() {
   return (
     <Routes>
@@ -48,6 +48,9 @@ function App() {
     
       {/* Typing Language */}
       <Route path="/typing-language" element={<TypingLanguage />} />
+
+            {/* Donation */}
+      <Route path="/donation" element={<Donation />} />
 
     </Routes>
   );
