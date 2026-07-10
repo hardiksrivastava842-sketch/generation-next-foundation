@@ -13,7 +13,7 @@ function Footer() {
           <br />
           Designed & Developed by{" "}
           <span className="font-semibold text-red-500">
-            Hardik and team 
+            HaRdIk
           </span>
         </div>
 

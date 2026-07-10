@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import { db } from "../firebase/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 function Donation() {
   const [formData, setFormData] = useState({
@@ -13,13 +14,41 @@ function Donation() {
 
   
 });
-const [showPayment, setShowPayment] = useState(false);
-const [showVerification, setShowVerification] = useState(false);
+
+const [step, setStep] = useState(1);
+const [utr, setUtr] = useState("");
+const [paidAmount, setPaidAmount] = useState("");
 const handleChange = (e) => {
   setFormData({
     ...formData,
     [e.target.name]: e.target.value,
   });
+};
+const saveDonation = async () => {
+  try {
+    await addDoc(collection(db, "donations"), {
+      name: formData.name,
+      email: formData.email,
+      mobile: formData.mobile,
+      donationAmount: formData.amount,
+      message: formData.message,
+
+      utr: utr,
+      paidAmount: paidAmount,
+
+      status: "Pending",
+
+      createdAt: serverTimestamp(),
+    });
+
+    alert("Donation submitted successfully!");
+
+    setStep(4);
+
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong.");
+  }
 };
   return (
     <section className="min-h-screen bg-gray-50 py-16">
@@ -51,40 +80,41 @@ const handleChange = (e) => {
             </ul>
           </div>
 
-          <div className="bg-blue-700 text-white rounded-xl p-8">
-            <h2 className="text-2xl font-bold mb-4">
-              Make a Donation
-            </h2>
+           <div className="bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 rounded-3xl shadow-2xl p-10">
+           <h2 className="text-4xl font-bold text-white mb-2">
+  Make a Donation
+</h2>
 
-            <p className="mb-6">
-              Every contribution makes a difference.
-            </p>
+<p className="text-blue-100 text-lg mb-8">
+  Every contribution helps us educate and empower students.
+</p>
 
-            <input
+  
+<input
   type="text"
   name="name"
-  placeholder="Full Name"
+  placeholder="Enter your full name"
   value={formData.name}
   onChange={handleChange}
-  className="w-full p-3 rounded-lg text-black mb-4"
+  className="w-full px-5 py-4 mb-5 rounded-xl bg-white text-gray-800 placeholder-gray-500 border border-white/30 shadow focus:ring-4 focus:ring-blue-300 outline-none"
 />
+
 <input
   type="email"
   name="email"
-  placeholder="Email Address"
+  placeholder="Enter your email"
   value={formData.email}
   onChange={handleChange}
-  className="w-full p-3 rounded-lg text-black mb-4"
-  required
+  className="w-full px-5 py-4 mb-5 rounded-xl bg-white text-gray-800 placeholder-gray-500 border border-white/30 shadow focus:ring-4 focus:ring-blue-300 outline-none"
 />
+
 <input
   type="text"
   name="mobile"
-  placeholder="Mobile Number"
+  placeholder="Enter mobile number"
   value={formData.mobile}
   onChange={handleChange}
-  className="w-full p-3 rounded-lg text-black mb-4"
-  required
+  className="w-full px-5 py-4 mb-5 rounded-xl bg-white text-gray-800 placeholder-gray-500 border border-white/30 shadow focus:ring-4 focus:ring-blue-300 outline-none"
 />
 
 <input
@@ -93,26 +123,28 @@ const handleChange = (e) => {
   placeholder="Donation Amount (₹)"
   value={formData.amount}
   onChange={handleChange}
-  className="w-full p-3 rounded-lg text-black mb-4"
-  required
+  className="w-full px-5 py-4 mb-5 rounded-xl bg-white text-gray-800 placeholder-gray-500 border border-white/30 shadow focus:ring-4 focus:ring-blue-300 outline-none"
 />
 
 <textarea
   name="message"
-  placeholder="Message (Optional)"
+  rows="4"
+  placeholder="Write your message..."
   value={formData.message}
   onChange={handleChange}
-  className="w-full p-3 rounded-lg text-black mb-4"
+  className="w-full px-5 py-4 mb-6 rounded-xl bg-white text-gray-800 placeholder-gray-500 border border-white/30 shadow focus:ring-4 focus:ring-blue-300 outline-none"
 />
+
 
 <button
   type="button"
-  onClick={() => setShowPayment(true)}
-  className="w-full bg-white text-blue-700 py-3 rounded-lg font-bold hover:bg-gray-100"
+  onClick={() => setStep(2)}
+  className="w-full py-4 rounded-xl bg-white text-blue-700 font-bold text-xl shadow-lg hover:bg-blue-50 hover:scale-[1.02] transition duration-300"
 >
   Continue to Payment
 </button>
-{showPayment && (
+{step === 2 && (
+  
   <div className="mt-8 border-t border-blue-300 pt-6">
 
     <h3 className="text-2xl font-bold text-center mb-6">
@@ -139,30 +171,85 @@ const handleChange = (e) => {
 
   </div>
 )}
-{showPayment && (
-  <div className="mt-8 border-t border-blue-400 pt-6">
+<p className="text-blue-100 mt-4 text-center">
+Scan using any UPI App like PhonePe, Google Pay, Paytm or BHIM.
+</p>
+<div className="text-center mt-8">
+  <button
+   onClick={() => setStep(3)}
+    className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl font-bold shadow-lg transition"
+  >
+    ✅ Done
+  </button>
+</div>
+{step === 3 && (
 
-    <h3 className="text-xl font-bold text-center mb-4">
-      Scan & Donate
-    </h3>
+<div className="mt-8 bg-white rounded-2xl p-6 shadow-xl">
 
-    <div className="flex justify-center">
-      <img
-        src="/donation-qr.jpg"
-        alt="Donation QR"
-        className="w-60 h-60 bg-white rounded-lg p-2"
-      />
-    </div>
+<h3 className="text-2xl font-bold text-blue-700 mb-6 text-center">
+Payment Verification
+</h3>
 
-    <div className="text-center mt-5">
-      <p className="font-semibold">UPI ID</p>
+<p className="text-gray-600 text-center mb-6">
+Please enter your payment details for verification.
+</p>
 
-      <p className="bg-white text-blue-700 inline-block px-4 py-2 rounded-lg mt-2">
-        srivastava.mr@superyes@
-      </p>
-    </div>
+<input
+type="text"
+placeholder="Enter UTR Number"
+value={utr}
+onChange={(e)=>setUtr(e.target.value)}
+className="w-full border rounded-xl p-4 mb-4"
+/>
 
-  </div>
+<input
+type="number"
+placeholder="Amount Paid (₹)"
+value={paidAmount}
+onChange={(e)=>setPaidAmount(e.target.value)}
+className="w-full border rounded-xl p-4 mb-6"
+/>
+
+<button
+  onClick={saveDonation}
+  disabled={!utr.trim() || !paidAmount.trim()}
+  className={`w-full py-4 rounded-xl font-bold mt-4 transition ${
+    utr.trim() && paidAmount.trim()
+      ? "bg-blue-700 hover:bg-blue-800 text-white"
+      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+  }`}
+>
+  Submit Verification
+</button>
+</div>
+
+)}
+{step === 4 && (
+
+<div className="mt-8 bg-green-50 border border-green-300 rounded-2xl p-8 text-center">
+
+<h3 className="text-3xl font-bold text-green-700 mb-4">
+🎉 Payment Submitted
+</h3>
+
+<p className="text-lg text-gray-700">
+Your payment details have been submitted successfully.
+</p>
+
+<p className="mt-3 text-gray-600">
+Your donation is currently under <b>Admin Verification</b>.
+</p>
+
+<p className="mt-2 text-gray-600">
+After verification, your donation will be confirmed.
+</p>
+
+<div className="mt-6 bg-yellow-100 text-yellow-800 py-3 rounded-xl font-semibold">
+⏳ Status : Waiting for Admin Verification
+</div>
+
+</div>
+
 )}
 
 
