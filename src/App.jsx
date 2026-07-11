@@ -13,6 +13,7 @@ import HindiTypingCourse from "./pages/HindiTypingCourse";
 import TypingLanguage from "./pages/TypingLanguage";
 import Donation from "./components/Donation"; 
 import DonationRequests from "./pages/DonationRequests";
+import AdminDonation from "./pages/AdminDonation";
 function App() {
   return (
     <Routes>
@@ -52,7 +53,10 @@ function App() {
 
             {/* Donation */}
       <Route path="/donation" element={<Donation />} />
- 
+        
+              {/*admin Donation */}
+        <Route path="/admin-donations" element={<AdminDonation />} />
+
             {/* Donation Requests */}
       <Route path="/donation-requests" element={<DonationRequests />} />
 

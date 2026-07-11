@@ -92,10 +92,10 @@ function Dashboard() {
         </div>
 
         {/* Buttons */}
-        <div className="mt-10 flex flex-wrap gap-4">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
          <Link to="/add-student">
-  <div className="w-64 h-64 bg-blue-700 hover:bg-blue-800 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
+  <div className="h-64 w-full bg-blue-700 hover:bg-blue-800 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
 
     <div className="text-7xl mb-4">➕</div>
 
@@ -111,7 +111,7 @@ function Dashboard() {
 </Link>
 
           <Link to="/students">
-  <div className="w-64 h-64 bg-green-600 hover:bg-green-700 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
+  <div className="h-64 w-full bg-green-600 hover:bg-green-700 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
 
     <div className="text-7xl mb-4">📋</div>
 
@@ -127,7 +127,7 @@ function Dashboard() {
 </Link>
 
          <Link to="/search-student">
-  <div className="w-64 h-64 bg-orange-500 hover:bg-orange-600 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
+  <div className="h-64 w-full bg-orange-500 hover:bg-orange-600 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
 
     <div className="text-7xl mb-4">🔍</div>
 
@@ -143,7 +143,7 @@ function Dashboard() {
 </Link>
 
            <Link to="/typing-language">
-  <div className="w-64 h-64 bg-purple-700 hover:bg-purple-800 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
+  <div className="h-64 w-full bg-purple-700 hover:bg-purple-800 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
 
     <div className="text-7xl mb-4">
       ⌨️
@@ -160,7 +160,7 @@ function Dashboard() {
   </div>
 </Link>
        <Link to="/typing-results">
-  <div className="w-64 h-64 bg-indigo-600 hover:bg-indigo-700 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
+  <div className="h-64 w-full bg-indigo-600 hover:bg-indigo-700 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
 
     <div className="text-7xl mb-4">
       📊
@@ -169,7 +169,23 @@ function Dashboard() {
     <h2 className="text-2xl font-bold">
       Typing Results
     </h2>
+<Link to="/admin-donations">
+  <div className="h-64 w-full bg-emerald-600 hover:bg-emerald-700 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
 
+    <div className="text-7xl mb-4">
+      💰
+    </div>
+
+    <h2 className="text-2xl font-bold">
+      Donation Requests
+    </h2>
+
+    <p className="text-sm mt-2 text-center px-4">
+      View, verify and manage all donor payment requests.
+    </p>
+
+  </div>
+</Link>
     <p className="text-sm mt-2 text-center px-4">
       View all typing test results and performance history.
     </p>
