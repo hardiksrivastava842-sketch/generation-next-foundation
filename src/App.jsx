@@ -14,11 +14,16 @@ import TypingLanguage from "./pages/TypingLanguage";
 import Donation from "./components/Donation"; 
 import DonationRequests from "./pages/DonationRequests";
 import AdminDonation from "./pages/AdminDonation";
+import About from "./pages/About";
+
 function App() {
   return (
     <Routes>
 
       <Route path="/" element={<Home />} />
+
+       {/* About */}
+            <Route path="/about" element={<About />} />
 
       <Route path="/login" element={<Login />} />
 
@@ -54,11 +59,10 @@ function App() {
             {/* Donation */}
       <Route path="/donation" element={<Donation />} />
         
-              
 
             {/* Donation Requests */}
       <Route path="/donation-requests" element={<DonationRequests />} />
-
+             
     </Routes>
   );
 }

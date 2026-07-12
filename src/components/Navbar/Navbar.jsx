@@ -24,15 +24,14 @@ function Navbar() {
             </Link>
           </li>
 
-          <li>
-            <a
-              href="/#about"
-              className="hover:text-purple-700 transition"
-            >
-              About
-            </a>
-          </li>
-
+         <li>
+  <Link
+    to="/about"
+    className="hover:text-purple-700 transition"
+  >
+    About
+  </Link>
+</li>
           <li>
             <Link
               to="/donation"
