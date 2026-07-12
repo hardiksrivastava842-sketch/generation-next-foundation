@@ -54,8 +54,7 @@ function App() {
             {/* Donation */}
       <Route path="/donation" element={<Donation />} />
         
-              {/*admin Donation */}
-        <Route path="/admin-donations" element={<AdminDonation />} />
+              
 
             {/* Donation Requests */}
       <Route path="/donation-requests" element={<DonationRequests />} />

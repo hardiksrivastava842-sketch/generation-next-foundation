@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { db } from "../firebase/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-
+import emailjs from "@emailjs/browser";
 function Donation() {
   const [step, setStep] = useState(1);
 
@@ -15,33 +15,47 @@ function Donation() {
 
   const [utr, setUtr] = useState("");
   const [paidAmount, setPaidAmount] = useState("");
+const handleChange = (e) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
+  });
+};
+  
 
-  const handleChange = (e) => {
-    setFormData({
+
+   const saveDonation = async () => {
+  try {
+    await addDoc(collection(db, "donations"), {
       ...formData,
-      [e.target.name]: e.target.value,
+      utr,
+      paidAmount,
+      status: "Pending",
+      createdAt: serverTimestamp(),
     });
-  };
 
-  const saveDonation = async () => {
-    try {
-      await addDoc(collection(db, "donations"), {
-        ...formData,
-        utr,
-        paidAmount,
-        status: "Pending",
-        createdAt: serverTimestamp(),
-      });
+    await emailjs.send(
+      "service_4r3oovy",
+      "template_w5qd3lk",
+      {
+        name: formData.name,
+        email: formData.email,
+        amount: paidAmount,
+        utr: utr,
+        status: "Pending Verification",
+      },
+      "Jo8T8dif-bX40sgNr"
+    );
 
-      setStep(4);
-    } catch (error) {
-      console.error(error);
-      alert("Failed to submit donation.");
-    }
-  };
+    setStep(4);
+  } catch (error) {
+    console.error(error);
+    alert("Failed to submit donation.");
+  }
+};
 
-  return (
-    <section className="min-h-screen bg-gray-100 py-12">
+return (
+  <section className="min-h-screen bg-gray-100 py-12">
       <div className="max-w-6xl mx-auto px-5">
 
         <h1 className="text-5xl font-bold text-center text-blue-700">
@@ -272,6 +286,7 @@ function Donation() {
                     setPaidAmount("");
                   }}
                   className="mt-8 bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-xl font-bold"
+                  
                 >
                   Make Another Donation
                 </button>
@@ -284,7 +299,7 @@ function Donation() {
 
       </div>
     </section>
-  );
+);
 }
 
 export default Donation;

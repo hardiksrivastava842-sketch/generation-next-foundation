@@ -169,8 +169,16 @@ function Dashboard() {
     <h2 className="text-2xl font-bold">
       Typing Results
     </h2>
-<Link to="/admin-donations">
-  <div className="h-64 w-full bg-emerald-600 hover:bg-emerald-700 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
+
+    <p className="text-sm mt-2 text-center px-4">
+      View all typing test results and performance history.
+    </p>
+
+  </div>
+</Link> 
+
+<Link to="/donation-requests">
+  <div className="w-64 h-64 bg-teal-600 hover:bg-teal-700 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
 
     <div className="text-7xl mb-4">
       💰
@@ -186,12 +194,6 @@ function Dashboard() {
 
   </div>
 </Link>
-    <p className="text-sm mt-2 text-center px-4">
-      View all typing test results and performance history.
-    </p>
-
-  </div>
-</Link> 
  
 
            
