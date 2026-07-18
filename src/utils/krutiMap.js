@@ -144,3 +144,12 @@ export function krutiStringToUnicode(input) {
   }
   return output;
 }
+export const reverseKrutiMap = {};
+
+Object.entries(krutiKeys.normal).forEach(([key, value]) => {
+  reverseKrutiMap[value] = key;
+});
+
+Object.entries(krutiKeys.shift).forEach(([key, value]) => {
+  reverseKrutiMap[value] = key;
+});

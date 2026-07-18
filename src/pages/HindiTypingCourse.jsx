@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { krutiKeys } from "../utils/krutiMap";
+import { krutiKeys, reverseKrutiMap } from "../utils/krutiMap";
 import { db } from "../firebase/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { processKrutiInput } from "../utils/typingEngine";
+import HindiKeyboard from "../components/HindiKeyboard";
 function HindiTypingCourse() {
 
   const [studentName, setStudentName] = useState("");
@@ -27,9 +28,26 @@ function HindiTypingCourse() {
 
     5: "यह पाँच मिनट का हिंदी टाइपिंग अभ्यास है। इस अभ्यास का उद्देश्य आपकी गति, शुद्धता और एकाग्रता को बढ़ाना है। पूरे पैराग्राफ को ध्यानपूर्वक पढ़ें और बिना गलती के टाइप करने का प्रयास करें।"
   };
+const paragraph = paragraphs[time];
 
-  const paragraph = paragraphs[time];
-  // Start Test
+const nextChar = paragraph[typedText.length] || "";
+
+let expectedKey = null;
+let expectedShift = false;
+
+for (const [key, value] of Object.entries(krutiKeys.shift)) {
+  if (value === nextChar) {
+    expectedKey = key;
+    expectedShift = true;
+    break;
+  }
+}
+
+if (nextChar === " ") {
+  expectedKey = "Space";
+} else if (!expectedKey) {
+  expectedKey = reverseKrutiMap[nextChar] || null;
+}
 const startTest = () => {
   if (!studentName.trim()) {
     alert("Please enter student name");
@@ -243,9 +261,13 @@ return (
             value={typedText}
             onKeyDown={handleTyping}
             readOnly
-            rows={8}
-            className="w-full border-2 border-red-600 rounded-lg p-4 text-2xl kruti-font"
+            rows={4}
+           className="w-full border-2 border-red-600 rounded-lg p-3 text-xl kruti-font resize-none"
           />
+          <HindiKeyboard
+  expectedKey={expectedKey}
+  expectedShift={expectedShift}
+/>
 
         </>
       ) : (
