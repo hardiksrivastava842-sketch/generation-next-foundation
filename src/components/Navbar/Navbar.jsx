@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
 
+import { Link, useLocation } from "react-router-dom";
 function Navbar() {
+  const location = useLocation();
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
@@ -71,11 +72,13 @@ function Navbar() {
         </ul>
 
         {/* Admin Login */}
-        <Link to="/login">
-          <button className="bg-purple-700 text-white px-5 py-2 rounded-lg hover:bg-purple-800 transition duration-300">
-            Admin Login
-          </button>
-        </Link>
+        {location.pathname === "/" && (
+  <Link to="/login">
+    <button className="bg-purple-700 text-white px-5 py-2 rounded-lg hover:bg-purple-800 transition duration-300">
+      Admin Login
+    </button>
+  </Link>
+)}
 
       </div>
     </nav>
