@@ -15,7 +15,7 @@ import Donation from "./components/Donation";
 import DonationRequests from "./pages/DonationRequests";
 import AdminDonation from "./pages/AdminDonation";
 import About from "./pages/About";
-
+import ContactRequests from "./pages/ContactRequests"; 
 function App() {
   return (
     <Routes>
@@ -62,6 +62,9 @@ function App() {
 
             {/* Donation Requests */}
       <Route path="/donation-requests" element={<DonationRequests />} />
+
+      {/* Contact Requests */}
+      <Route path="/contact-requests" element={<ContactRequests />} />
              
     </Routes>
   );

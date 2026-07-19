@@ -191,11 +191,27 @@ function Dashboard() {
     <p className="text-sm mt-2 text-center px-4">
       View, verify and manage all donor payment requests.
     </p>
-
+    
   </div>
 </Link>
  
+<Link to="/contact-requests">
+  <div className="h-64 w-full bg-indigo-600 hover:bg-indigo-700 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer">
 
+    <div className="text-7xl mb-4">
+      📩
+    </div>
+
+    <h2 className="text-2xl font-bold">
+      Contact Requests
+    </h2>
+
+    <p className="text-sm mt-2 text-center px-4">
+      View all contact messages submitted by website visitors.
+    </p>
+
+  </div>
+</Link>
            
          
 
