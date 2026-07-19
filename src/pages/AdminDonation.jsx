@@ -106,7 +106,7 @@ function AdminDonation() {
 
     <button
       onClick={() => updateStatus(donation.id, "Rejected")}
-      className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg"
+      className="bg-purple-700 hover:bg-red-700 text-white px-4 py-2 rounded-lg"
     >
       Reject
     </button>

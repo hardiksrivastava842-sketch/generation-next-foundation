@@ -167,7 +167,7 @@ function About() {
 
               <div className="bg-white rounded-2xl shadow-lg p-6">
 
-                <h3 className="text-4xl font-bold text-red-600">
+                <h3 className="text-4xl font-bold text-purple-700">
                   100%
                 </h3>
 
@@ -356,7 +356,7 @@ function About() {
 
               <div className="text-6xl mb-4">⭐</div>
 
-              <h3 className="text-5xl font-extrabold text-red-600">
+              <h3 className="text-5xl font-extrabold text-purple-700">
                 98%
               </h3>
 
@@ -439,7 +439,7 @@ function About() {
 
             <div className="bg-white rounded-3xl shadow-xl p-10 hover:-translate-y-3 transition duration-300">
               <div className="text-5xl">🚀</div>
-              <h3 className="text-2xl font-bold text-red-600 mt-6">
+              <h3 className="text-2xl font-bold text-purple-700 mt-6">
                 Modern Technology
               </h3>
               <p className="text-gray-600 mt-4 leading-7">
@@ -562,7 +562,7 @@ function About() {
 
               <div className="text-6xl">📈</div>
 
-              <h3 className="text-2xl font-bold text-red-600 mt-6">
+              <h3 className="text-2xl font-bold text-purple-700 mt-6">
                 Career Guidance
               </h3>
 

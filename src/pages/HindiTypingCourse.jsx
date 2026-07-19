@@ -262,7 +262,7 @@ return (
             onKeyDown={handleTyping}
             readOnly
             rows={4}
-           className="w-full border-2 border-red-600 rounded-lg p-3 text-xl kruti-font resize-none"
+           className="w-full border-2 border-purple-700 rounded-lg p-3 text-xl kruti-font resize-none"
           />
           <HindiKeyboard
   expectedKey={expectedKey}

@@ -9,7 +9,7 @@ import Footer from "../components/Footer/Footer";
 function Home() {
   return (
     <>
-    <h1 className="text-7xl text-red-600 text-center">
+    <h1 className="text-7xl text-purple-700 text-center">
   
      </h1>
       <Navbar />

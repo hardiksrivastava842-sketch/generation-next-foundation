@@ -266,7 +266,7 @@ const paragraph = paragraphs[time];
               onChange={(e) => setTypingText(e.target.value)}
               placeholder="Start typing here..."
               rows="8"
-              className="w-full border-2 border-red-600 rounded-lg p-4 text-lg"
+              className="w-full border-2 border-purple-700 rounded-lg p-4 text-lg"
             />
             <div className="mt-6 text-center">
               <button

@@ -133,7 +133,7 @@ function Students() {
 
                         <button
                           onClick={() => handleDelete(student.id)}
-                          className="bg-red-600 text-white px-3 py-2 rounded-lg hover:bg-red-700"
+                          className="bg-purple-700 text-white px-3 py-2 rounded-lg hover:bg-red-700"
                         >
                           🗑 Delete
                         </button>

@@ -44,7 +44,7 @@ function Dashboard() {
 
     <button
       onClick={handleLogout}
-      className="bg-red-600 hover:bg-red-700 text-white text-sm px-3 py-2 rounded-md shadow-md"
+      className="bg-purple-700 hover:bg-red-700 text-white text-sm px-3 py-2 rounded-md shadow-md"
     >
       🚪 Logout
     </button>

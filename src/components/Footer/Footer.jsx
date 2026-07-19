@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="bg-black text-white py-10 border-t border-red-900">
+    <footer className="bg-black text-white py-10 border-t border-blue-900">
 
       <div className="max-w-7xl mx-auto px-6">
 
