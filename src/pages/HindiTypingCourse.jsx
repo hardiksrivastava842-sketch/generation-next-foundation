@@ -37,7 +37,7 @@ let expectedShift = false;
 
 for (const [key, value] of Object.entries(krutiKeys.shift)) {
   if (value === nextChar) {
-    expectedKey = key;
+    expectedKey = key.length === 1 ? key.toLowerCase() : key;
     expectedShift = true;
     break;
   }

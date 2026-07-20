@@ -1,10 +1,3 @@
-// krutidev.js
-// KrutiDev 010 -> Unicode (Devanagari) key mapping
-// NOTE: Yeh sirf "raw key -> glyph" mapping hai. KrutiDev font
-// ek "visual" font hai (matra pehle likhi jaati hai, consonant baad me),
-// isliye sirf character-replace karne se output 100% sahi Devanagari
-// order me nahi aayega. Neeche ek fixKrutiOrder() helper bhi diya hai
-// jo common reordering issues (jaise "f" ki "ि" matra) theek karta hai.
 
 export const krutiKeys = {
   normal: {
@@ -66,19 +59,50 @@ export const krutiKeys = {
 
   shift: {
     // Shift + Numbers
-    "!": "!",
-    "@": "@",
-    "#": "#",
-    "$": "₹",
-    "%": "%",
-    "^": "^",
-    "&": "&",
-    "*": "*",
-    "(": "(",
-    ")": ")",
-    "_": "_",
-    "+": "+",
+    // Extra Matras & Symbols
+"`": "़",
+"~": "ॐ",
 
+// Extra Letters
+"]": "ञ",
+
+// Punctuation
+"|": "॥",
+
+// Common Signs
+"^": "ं",
+"&": "ँ",
+"*": "ः",
+
+// Half Letters
+"%": "्",
+"$": "ृ",
+
+// Extra Vowels
+"(": "ऑ",
+")": "ऍ",
+
+// Common Conjuncts
+"!": "त्र",
+"@": "क्ष",
+"#": "ज्ञ",
+    // Extra Shift Characters
+"~": "ॐ",
+
+"!": "त्र",
+"@": "क्ष",
+"#": "ज्ञ",
+"$": "ृ",
+"%": "्",
+"^": "ं",
+"&": "ँ",
+"*": "ः",
+
+"(": "ऑ",
+")": "ऍ",
+
+"_": "ड़",
+"+": "ढ़",
     // Shift + Q W E R T Y U I O P
     "Q": "फ",
     "W": "ॅ",
@@ -118,6 +142,7 @@ export const krutiKeys = {
     "<": "ङ",
     ">": "ढ़",
     "?": "?",
+
   },
 };
 
